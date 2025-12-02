@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歷史訂單 - POS 系統</title>
+    
+    <link rel="stylesheet" href="../src/css/variables.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    
+    <link rel="stylesheet" href="../src/css/pages/pos.css">
+    <link rel="stylesheet" href="../src/css/pages/orders.css">
+</head>
+<body>
+
+    <div class="page-container">
+        
+        <nav class="sidebar-menu">
+            
+            <div class="logo">POS</div>
+            <div class="system-clock" id="clock-display">
+                <div class="clock-time">--:--</div>
+                <div class="clock-date">--/--</div>
+            </div>
+
+            <ul class="menu-list">
+                <li onclick="location.href='../shift/shift-index.html'" style="margin-top: auto; color: #ffab91;">交班</li>
+                <li onclick="location.href='/pos-system/pos-index.html'">收銀</li>
+                <li class="active">訂單</li>
+                <li>庫存</li>
+                <li>設定</li>
+            </ul>
+        </nav>
+
+        <main class="content-area">
+            <header class="page-header">
+                <h2>歷史訂單紀錄</h2>
+                <a href="/pos-system/pos-index.html" class="btn-back">返回收銀台</a>
+            </header>
+
+            <div class="order-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>單號</th>
+                            <th>交易時間</th>
+                            <th>總金額</th>
+                            <th>商品明細</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-list-body">
+                        <tr><td colspan="4" style="text-align:center;">資料載入中...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+    </div>
+
+    <script type="module" src="../src/orders_main.js"></script>
+</body>
+</html>

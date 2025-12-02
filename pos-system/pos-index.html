@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS 系統 Web 版</title>
+    
+    <link rel="stylesheet" href="../src/css/variables.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    
+    <link rel="stylesheet" href="../src/css/pages/pos.css">
+    <link rel="stylesheet" href="../src/css/components.css"> </head>
+<body>
+
+    <div class="app-container">
+        
+        <nav class="sidebar-menu">
+            <div class="logo">POS</div>
+            <div class="system-clock" id="clock-display">
+                <div class="clock-time">--:--</div>
+                <div class="clock-date">--/--</div>
+            </div>
+            
+            <ul class="menu-list">
+                <li onclick="location.href='../shift/shift-index.html'" style="margin-top: auto; color: #ffab91;">交班</li>
+                <li class="active">收銀</li>
+                <li onclick="location.href='../orders/orders-index.html'">訂單</li>
+                <li>庫存</li>
+                <li>設定</li>
+            </ul>
+        </nav>
+
+        <main class="product-area">
+            <header class="product-header">
+                <h2>商品列表</h2>
+                <div class="category-tabs">
+                    <button class="active">全部</button>
+                    <button>飲料</button>
+                    <button>甜點</button>
+                    <button>主餐</button>
+                </div>
+            </header>
+            
+            <div class="product-grid" id="product-list-container">
+                <div class="placeholder-text">載入商品中...</div>
+            </div>
+        </main>
+
+        <aside class="order-panel">
+            
+            <div class="order-list-section">
+                <h3>購物明細</h3>
+                <div class="order-items-container" id="cart-items-container">
+                    <div class="empty-cart-msg">尚未加入商品</div>
+                </div>
+            </div>
+
+            <div class="checkout-section">
+                <div class="summary-row">
+                    <span>小計</span>
+                    <span id="subtotal-display">$0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>總金額</span>
+                    <span id="total-display">$0</span>
+                </div>
+
+                <div class="payment-area" style="margin: 15px 0; border-top: 1px solid #eee; padding-top: 15px;">
+                    <div class="summary-row input-row">
+                        <label for="received-amount">實收金額</label>
+                        <input type="number" id="received-amount" placeholder="0" class="pos-input">
+                    </div>
+                    <div class="summary-row change-row">
+                        <span>找零</span>
+                        <span id="change-display" style="color: var(--accent-color); font-weight: bold;">$0</span>
+                    </div>
+                </div>
+
+                <button class="btn-checkout" id="btn-checkout">結帳</button>
+            </div>
+        </aside>
+
+    </div>
+
+    <script type="module" src="../src/main.js"></script>
+
+</body>
+</html>

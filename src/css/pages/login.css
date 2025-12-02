@@ -1,0 +1,76 @@
+/* 使用 Flexbox 讓登入卡片在畫面正中間 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-dark); /* 背景用深灰色，突顯質感 */
+}
+
+/* 登入卡片 */
+.login-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-header h2 {
+    color: var(--primary-color); /* 墨綠色 */
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.login-header p {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+/* 輸入框樣式 */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+/* 測試用登入按鈕 */
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.btn-login:hover {
+    background-color: var(--primary-hover);
+}

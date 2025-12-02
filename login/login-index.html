@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入 - POS 系統</title>
+    
+    <link rel="stylesheet" href="../src/css/variables.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    
+    <link rel="stylesheet" href="../src/css/pages/login.css">
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="login-header">
+            <h2>POS 系統登入</h2>
+            <p>請輸入您的帳號密碼</p>
+        </div>
+
+        <div class="login-form">
+            <div class="form-group">
+                <label for="username">帳號</label>
+                <input type="text" id="username" placeholder="帳號">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">密碼</label>
+                <input type="password" id="password" placeholder="密碼">
+            </div>
+
+            <button class="btn-login" id="testLoginBtn">登入系統</button>
+        </div>
+    </div>
+
+    <script>
+        function restrictToAlphaNumeric(inputId) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+
+            input.addEventListener('input', function(e) {
+                // 使用正規表達式：[^a-zA-Z0-9] 代表「不是」英文或數字
+                // 將這些違規字元替換成空字串
+                this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+            });
+        }
+
+        // 套用到帳號與密碼欄位
+        restrictToAlphaNumeric('username');
+        restrictToAlphaNumeric('password');
+        // ------------------------------------------------
+        const loginBtn = document.getElementById('testLoginBtn');
+
+        // 支援按 Enter 鍵登入
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                loginBtn.click();
+            }
+        });
+
+        loginBtn.addEventListener('click', async () => {
+            // 1. 取得輸入框的值
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            // 簡單驗證
+            if (!username || !password) {
+                alert("請輸入帳號與密碼");
+                return;
+            }
+
+            // 2. 呼叫後端登入 API
+            try {
+                // 鎖定按鈕避免重複點擊
+                loginBtn.disabled = true;
+                loginBtn.textContent = "驗證中...";
+
+                // 發送請求 (請確認 Port 5099 是否正確)
+                const response = await fetch("http://localhost:5099/api/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ 
+                        username: username, 
+                        password: password 
+                    })
+                });
+
+                if (response.ok) {
+                    // ★★★ 成功狀況：只有這裡會執行跳轉 ★★★
+                    const data = await response.json();
+                    
+                    // 建立 Session 資料 (包含交班用的登入時間)
+                    const sessionData = {
+                        ...data,
+                        loginTime: new Date().toISOString()
+                    };
+
+                    // 存入 localStorage
+                    localStorage.setItem('currentUser', JSON.stringify(sessionData));
+                    
+                    // 跳轉到 POS 主畫面
+                    window.location.href = '../pos-system/pos-index.html';
+                } else {
+                    // ★★★ 失敗狀況 (401 Unauthorized)：顯示錯誤但不跳轉 ★★★
+                    alert("登入失敗：帳號或密碼錯誤");
+                    passwordInput.value = ''; // 清空密碼方便重打
+                    passwordInput.focus();
+                }
+
+            } catch (error) {
+                // ★★★ 連線錯誤狀況 (後端沒開)：只顯示錯誤，絕對不跳轉 ★★★
+                console.error("登入錯誤:", error);
+                alert("系統連線錯誤，請確認後端是否已啟動 (dotnet run)！");
+            } finally {
+                // 無論成功失敗，最後都恢復按鈕狀態
+                loginBtn.disabled = false;
+                loginBtn.textContent = "登入系統";
+            }
+        });
+    </script>
+</body>
+</html>

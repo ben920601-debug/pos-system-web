@@ -1,0 +1,12 @@
+body {
+    background-color: var(--bg-light); /* 大家都用一樣的背景色 */
+    color: var(--text-main);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* 共用按鈕樣式 */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    /* ...其他樣式 */
+}

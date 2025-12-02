@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交班結算 - POS 系統</title>
+    
+    <link rel="stylesheet" href="../src/css/variables.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    <link rel="stylesheet" href="../src/css/pages/shift.css">
+</head>
+<body>
+
+    <div class="shift-container">
+        <div class="shift-card">
+            <header class="shift-header">
+                <h2>交班結算表</h2>
+                <p style="opacity: 0.8; margin-top: 5px;">請確認當班營收</p>
+            </header>
+
+            <div class="shift-body">
+                <div class="info-row">
+                    <span>值班人員</span>
+                    <span class="info-value" id="shift-user">-</span>
+                </div>
+                <div class="info-row">
+                    <span>開始時間</span>
+                    <span class="info-value" id="start-time">-</span>
+                </div>
+                <div class="info-row">
+                    <span>結算時間</span>
+                    <span class="info-value" id="end-time">-</span>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">銷售單數</div>
+                        <div class="stat-number" id="shift-order-count">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">銷售總額</div>
+                        <div class="stat-number" id="shift-total-amount">$0</div>
+                    </div>
+                </div>
+
+                <div class="warning-text">
+                    ⚠️ 確認交班後將自動登出系統，請確保錢箱金額正確。
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-cancel" onclick="location.href='../pos-system/pos-index.html'">暫不交班</button>
+                    <button class="btn-confirm" id="btn-confirm-shift">確認並登出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../src/shift_main.js"></script>
+</body>
+</html>
