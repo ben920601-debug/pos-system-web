@@ -7,51 +7,48 @@
     
     <link rel="stylesheet" href="../src/css/variables.css">
     <link rel="stylesheet" href="../src/css/global.css">
-    
     <link rel="stylesheet" href="../src/css/pages/pos.css">
     <link rel="stylesheet" href="../src/css/pages/orders.css">
 </head>
 <body>
 
     <div class="page-container">
-        
-        <nav class="sidebar-menu">
-            
+
+         <nav class="sidebar-menu">
             <div class="logo">POS</div>
             <div class="system-clock" id="clock-display">
                 <div class="clock-time">--:--</div>
                 <div class="clock-date">--/--</div>
             </div>
-
+        
             <ul class="menu-list">
                 <li onclick="location.href='../shift/shift-index.html'" style="margin-top: auto; color: #ffab91;">交班</li>
-                <li onclick="location.href='/pos-system/pos-index.html'">收銀</li>
-                <li class="active">訂單</li>
-                <li>庫存</li>
-                <li>設定</li>
+                <li onclick="location.href='../pos-system/pos-index.html'">收銀</li>
+                <li class="active">明細查詢</li>
+                <li onclick="location.href='../product/products-index.html'">商品管理</li>
+                <li onclick="location.href='../settings/settings-index.html'">設定</li>
             </ul>
         </nav>
 
         <main class="content-area">
             <header class="page-header">
                 <h2>歷史訂單紀錄</h2>
-                <a href="/pos-system/pos-index.html" class="btn-back">返回收銀台</a>
             </header>
 
-            <div class="order-table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>單號</th>
-                            <th>交易時間</th>
-                            <th>總金額</th>
-                            <th>商品明細</th>
-                        </tr>
-                    </thead>
-                    <tbody id="order-list-body">
-                        <tr><td colspan="4" style="text-align:center;">資料載入中...</td></tr>
-                    </tbody>
-                </table>
+            <div class="split-view-container">
+                
+                 <div class="left-panel">
+                    <div class="left-panel-header">訂單列表</div>
+                    <div class="order-list-scroll" id="order-list-container">
+                    <div style="padding:20px; text-align:center;">載入中...</div>
+                    </div>
+                </div>
+
+
+                <div class="right-panel" id="order-detail-container">
+                    <div class="empty-state">請選擇左側訂單查看明細</div>
+                </div>
+
             </div>
         </main>
 

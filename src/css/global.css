@@ -1,12 +1,44 @@
-body {
-    background-color: var(--bg-light); /* 大家都用一樣的背景色 */
-    color: var(--text-main);
-    font-family: 'Segoe UI', system-ui, sans-serif;
+/* src/css/global.css */
+
+/* 1. 基礎重置 (Reset) */
+:root {
+    /* 這裡保留你原本的變數設定，如果變數是在 variables.css 則不用動這裡 */
+    /* 確保 variables.css 有被引入即可 */
+}
+
+/* 2. 核心鎖定：讓網頁變得像 App */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+    /* ★ 關鍵：禁止任何形式的全頁捲動 */
+    overflow: hidden; 
+    
+    /* ★ 關鍵：防止 Mac/iOS 的橡皮筋回彈效果 */
+    position: fixed; 
+    
+    /* 字體設定 */
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; /* 讓字體更清晰 */
+}
+
+* {
+    box-sizing: border-box; /* 確保 Padding 不會撐爆寬度 */
 }
 
 /* 共用按鈕樣式 */
 .btn-primary {
     background-color: var(--primary-color);
     color: white;
-    /* ...其他樣式 */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
 }

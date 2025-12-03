@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系統設定 - POS 系統</title>
+    
+    <link rel="stylesheet" href="../src/css/variables.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    <link rel="stylesheet" href="../src/css/pages/pos.css"> <link rel="stylesheet" href="../src/css/pages/settings.css"> </head>
+<body>
+
+    <div class="page-container">
+        
+            <nav class="sidebar-menu">
+            <div class="logo">POS</div>
+            <div class="system-clock" id="clock-display">
+                <div class="clock-time">--:--</div>
+                <div class="clock-date">--/--</div>
+            </div>
+        
+            <ul class="menu-list">
+                <li onclick="location.href='../shift/shift-index.html'" style="margin-top: auto; color: #ffab91;">交班</li>
+                <li onclick="location.href='../pos-system/pos-index.html'">收銀</li>
+                <li onclick="location.href='../orders/orders-index.html'">明細查詢</li>
+                <li onclick="location.href='../product/products-index.html'">商品管理</li>
+                <li class="active">設定</li>
+            </ul>
+        </nav>
+
+        <main class="content-area">
+            <header class="page-header">
+                <h2>系統設定</h2>
+                <p>管理系統參數、人員權限與安全性設定</p>
+            </header>
+
+            <div class="settings-grid">
+                
+                <div class="setting-card card-personnel" id="btn-personnel">
+                    <div class="icon-box">👥</div>
+                    <div class="card-title">人事管理</div>
+                    <div class="card-desc">新增或移除員工帳號，設定店長與店員的操作權限。</div>
+                </div>
+
+                <div class="setting-card card-money" id="btn-shift-money">
+                    <div class="icon-box">💰</div>
+                    <div class="card-title">交班金設定</div>
+                    <div class="card-desc">設定收銀機的預設準備金(備用金)金額。</div>
+                </div>
+
+                <div class="setting-card card-blacklist" id="btn-blacklist">
+                    <div class="icon-box">🚫</div>
+                    <div class="card-title">黑名單查詢</div>
+                    <div class="card-desc">查詢與管理系統封鎖的會員或異常操作紀錄。</div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <script type="module" src="../src/settings_main.js"></script>
+</body>
+</html>

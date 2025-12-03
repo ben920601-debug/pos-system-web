@@ -1,0 +1,114 @@
+/* src/css/pages/settings.css */
+
+/* 1. 基礎佈局鎖定 */
+.page-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-light);
+    overflow: hidden;
+}
+
+.content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 30px; /* 設定頁面邊距大一點，比較大氣 */
+    height: 100%;
+    overflow-y: auto; /* 內容多時可捲動 */
+}
+
+/* 2. 標頭 */
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    border-left: 5px solid var(--accent-color);
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.page-header p {
+    color: var(--text-secondary);
+    margin-left: 20px;
+    font-size: 0.95rem;
+}
+
+/* 3. 卡片網格系統 */
+.settings-grid {
+    display: grid;
+    /* RWD: 卡片最小 280px，自動填滿 */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* 4. 功能卡片樣式 */
+.setting-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.setting-card:hover {
+    transform: translateY(-5px); /* 上浮效果 */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    border-color: var(--primary-color);
+}
+
+/* 卡片圖示區塊 (圓形背景) */
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* 不同功能的配色 */
+.card-personnel .icon-box { background-color: #e3f2fd; color: #1565c0; }
+.card-money .icon-box     { background-color: #e8f5e9; color: #2e7d32; }
+.card-blacklist .icon-box { background-color: #ffebee; color: #c62828; }
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* 裝飾用：右下角的小箭頭 */
+.setting-card::after {
+    content: '→';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.2rem;
+    color: #ddd;
+    transition: 0.3s;
+}
+
+.setting-card:hover::after {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MoaGibTeXjA=",
+  "dgSpecHash": "103YH6hU2Xc=",
   "success": true,
-  "projectFilePath": "/Users/buddy/Desktop/pos系統web版/api/PosApi.csproj",
+  "projectFilePath": "/Users/buddy/Desktop/pos-system-web/api/PosApi.csproj",
   "expectedPackageFiles": [
     "/Users/buddy/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0/microsoft.aspnetcore.openapi.10.0.0.nupkg.sha512",
     "/Users/buddy/.nuget/packages/microsoft.entityframeworkcore/10.0.0/microsoft.entityframeworkcore.10.0.0.nupkg.sha512",

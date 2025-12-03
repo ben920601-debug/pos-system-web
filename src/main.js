@@ -1,4 +1,4 @@
-import { ProductService } from './modules/core/Product.js';
+import { ProductService } from './modules/core/Products.js';
 import { Cart } from './modules/core/Cart.js';
 import { renderProductList } from './modules/ui/ProductListUI.js';
 import { updateCartUI } from './modules/ui/CartUI.js';

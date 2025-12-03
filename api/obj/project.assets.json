@@ -681,11 +681,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/buddy/Desktop/pos系統web版/api/PosApi.csproj",
+      "projectUniqueName": "/Users/buddy/Desktop/pos-system-web/api/PosApi.csproj",
       "projectName": "PosApi",
-      "projectPath": "/Users/buddy/Desktop/pos系統web版/api/PosApi.csproj",
+      "projectPath": "/Users/buddy/Desktop/pos-system-web/api/PosApi.csproj",
       "packagesPath": "/Users/buddy/.nuget/packages/",
-      "outputPath": "/Users/buddy/Desktop/pos系統web版/api/obj/",
+      "outputPath": "/Users/buddy/Desktop/pos-system-web/api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/buddy/.nuget/NuGet/NuGet.Config"

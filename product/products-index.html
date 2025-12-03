@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品管理 - POS 系統</title>
+    
+    <link rel="stylesheet" href="../src/css/variables.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    
+    <link rel="stylesheet" href="../src/css/pages/pos.css">
+    <link rel="stylesheet" href="../src/css/pages/products.css">
+    <link rel="stylesheet" href="../src/css/components.css">
+</head>
+<body>
+
+    <div class="page-container">
+
+        <nav class="sidebar-menu">
+            <div class="logo">POS</div>
+            <div class="system-clock" id="clock-display">
+                <div class="clock-time">--:--</div>
+                <div class="clock-date">--/--</div>
+            </div>
+        
+            <ul class="menu-list">
+                <li onclick="location.href='../shift/shift-index.html'" style="margin-top: auto; color: #ffab91;">交班</li>
+                <li onclick="location.href='../pos-system/pos-index.html'">收銀</li>
+                <li onclick="location.href='../orders/orders-index.html'">明細查詢</li>
+                <li class="active">商品管理</li>
+                <li onclick="location.href='../settings/settings-index.html'">設定</li>
+            </ul>
+        </nav>
+
+        <main class="content-area">
+            <header class="page-header">
+                <h2>商品列表管理</h2>
+                <button class="btn-primary" id="btn-add-product" style="border: none; border-radius: 5px; cursor: pointer;">
+                    + 新增商品
+                </button>
+            </header>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">ID</th>
+                            <th>商品名稱</th>
+                            <th>分類</th>
+                            <th>價格</th>
+                            <th style="width: 150px;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-list-body">
+                        <tr><td colspan="5" style="text-align:center; padding: 20px;">資料載入中...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+    </div>
+
+    <div id="product-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content" style="max-width: 400px; height: auto;">
+            <div class="modal-header">
+                <h2 id="modal-title">新增商品</h2>
+                <span class="close-btn" id="close-product-modal">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <form id="product-form">
+                    <input type="hidden" id="p-id">
+
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display:block; margin-bottom:8px; font-weight:bold;">商品名稱</label>
+                        <input type="text" id="p-name" class="pos-input" style="width:100%; text-align:left;" required>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display:block; margin-bottom:8px; font-weight:bold;">價格 ($)</label>
+                        <input type="number" id="p-price" class="pos-input" style="width:100%; text-align:left;" required>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display:block; margin-bottom:8px; font-weight:bold;">分類</label>
+                        <select id="p-category" class="pos-input" style="width:100%; text-align:left;">
+                            <option value="飲料">飲料</option>
+                            <option value="甜點">甜點</option>
+                            <option value="主餐">主餐</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-checkout" style="margin-top: 10px;">儲存變更</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../src/products_main.js"></script>
+</body>
+</html>

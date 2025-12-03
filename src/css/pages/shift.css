@@ -117,3 +117,71 @@
 
 .btn-confirm:hover { background-color: #d32f2f; }
 .btn-cancel:hover { background-color: #cfd8dc; }
+
+/* === 新增：兩階段切換 === */
+.step-section {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* 隱藏元素用 */
+.hidden {
+    display: none !important;
+}
+
+/* 階段一：大輸入框樣式 */
+.shift-input-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.shift-input-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--text-main);
+    font-size: 1.1rem;
+}
+
+.shift-input-large {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.5rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    text-align: right;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.shift-input-large:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    background-color: #f1f8e9;
+}
+
+.shift-hint {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 5px;
+    text-align: right;
+}
+
+/* 階段二：短溢顯示樣式 */
+.diff-row {
+    background-color: #fff3e0; /* 淡淡的橘色背景強調 */
+    border: 1px solid #ffe0b2;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.diff-label { font-weight: bold; color: #e65100; font-size: 1.1rem; }
+.diff-amount { font-size: 1.5rem; font-weight: bold; }
+
+/* 顏色狀態 */
+.status-match { color: #2e7d32; } /* 帳合 (綠色) */
+.status-short { color: #c62828; } /* 少錢 (紅色) */
+.status-over  { color: #1565c0; } /* 多錢 (藍色) */

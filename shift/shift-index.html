@@ -14,43 +14,84 @@
     <div class="shift-container">
         <div class="shift-card">
             <header class="shift-header">
-                <h2>交班結算表</h2>
-                <p style="opacity: 0.8; margin-top: 5px;">請確認當班營收</p>
+                <h2>交班結算作業</h2>
+                <p style="opacity: 0.8; margin-top: 5px;" id="header-subtitle">步驟 1/2：輸入實點金額</p>
             </header>
 
             <div class="shift-body">
-                <div class="info-row">
-                    <span>值班人員</span>
-                    <span class="info-value" id="shift-user">-</span>
-                </div>
-                <div class="info-row">
-                    <span>開始時間</span>
-                    <span class="info-value" id="start-time">-</span>
-                </div>
-                <div class="info-row">
-                    <span>結算時間</span>
-                    <span class="info-value" id="end-time">-</span>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <div class="stat-label">銷售單數</div>
-                        <div class="stat-number" id="shift-order-count">0</div>
+                
+                <div id="step-1" class="step-section">
+                    <div class="info-row">
+                        <span>值班人員</span>
+                        <span class="info-value" id="input-shift-user">-</span>
                     </div>
-                    <div class="stat-box">
-                        <div class="stat-label">銷售總額</div>
-                        <div class="stat-number" id="shift-total-amount">$0</div>
+
+                    <div class="shift-input-group">
+                        <label class="shift-input-label">💰 錢櫃實點總現金(不含預留金)</label>
+                        <input type="number" id="input-actual-cash" class="shift-input-large" placeholder="0">
+                        <div class="shift-hint">請清點錢箱內所有現金後輸入</div>
+                    </div>
+
+                    <div class="shift-input-group">
+                        <label class="shift-input-label">🏦 本班預留金 (系統設定)</label>
+                        <div id="text-reserve-fund" class="shift-input-large" style="background-color: #f5f5f5; color: #666; border: 1px dashed #ccc; cursor: default;">
+                            $0
+                        </div>
+                        <div class="shift-hint">此為固定扣除金額，若需修改請至「設定」頁面</div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn-cancel" onclick="location.href='../pos-system/pos-index.html'">返回</button>
+                        <button class="btn-confirm" id="btn-calculate">開始結算</button>
                     </div>
                 </div>
 
-                <div class="warning-text">
-                    ⚠️ 確認交班後將自動登出系統，請確保錢箱金額正確。
+                <div id="step-2" class="step-section hidden">
+                    
+                    <div class="info-row">
+                        <span>開始時間</span>
+                        <span class="info-value" id="start-time">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span>結算時間</span>
+                        <span class="info-value" id="end-time">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span>本班預留金</span>
+                        <span class="info-value" id="report-reserve">$0</span>
+                    </div>
+
+                    <div class="stats-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="stat-box">
+                            <div class="stat-label">系統銷售總額</div>
+                            <div class="stat-number" id="shift-sales-amount">$0</div>
+                        </div>
+                        <div class="stat-box" style="background-color: #e8f5e9;">
+                            <div class="stat-label">系統應有現金</div>
+                            <div class="stat-number" id="shift-expected-cash" style="color: #2e7d32;">$0</div>
+                        </div>
+                    </div>
+
+                    <div class="info-row" style="margin-top: 10px; border-top: 2px dashed #eee; padding-top: 15px;">
+                        <span style="font-size: 1.1rem; font-weight: bold;">錢櫃實點現金</span>
+                        <span class="info-value" id="report-actual-cash" style="font-size: 1.2rem;">$0</span>
+                    </div>
+
+                    <div class="diff-row">
+                        <div class="diff-label">短溢金額</div>
+                        <div class="diff-amount" id="shift-diff-amount">$0</div>
+                    </div>
+
+                    <div class="warning-text" id="diff-warning">
+                        ⚠️ 金額不符！請重新確認或填寫異常原因。
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn-cancel" id="btn-back-step1">重填金額</button>
+                        <button class="btn-confirm" id="btn-confirm-final">確認並登出</button>
+                    </div>
                 </div>
 
-                <div class="action-buttons">
-                    <button class="btn-cancel" onclick="location.href='../pos-system/pos-index.html'">暫不交班</button>
-                    <button class="btn-confirm" id="btn-confirm-shift">確認並登出</button>
-                </div>
             </div>
         </div>
     </div>

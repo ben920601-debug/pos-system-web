@@ -1,62 +1,142 @@
-/* src/css/pages/orders.css */
-
+/* 1. 最外層容器：鎖定視窗高度，禁止整個網頁捲動 */
 .page-container {
     display: flex;
-    height: 100vh;
+    height: 100vh; /* 佔滿視窗高度 */
+    width: 100vw;
     background-color: var(--bg-light);
+    overflow: hidden; /* ★ 關鍵：隱藏最外層捲軸 */
 }
 
-/* 內容區域 */
+/* 2. 右側內容區：使用 Flex 排列標頭與分割區 */
 .content-area {
     flex: 1;
-    padding: 30px;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    height: 100%; /* 確保繼承高度 */
+    overflow: hidden; /* ★ 關鍵：防止這裡出現捲軸 */
 }
 
 .page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    flex-shrink: 0; /* 禁止標頭被壓縮 */
 }
 
 .page-header h2 {
     color: var(--primary-color);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     border-left: 5px solid var(--accent-color);
     padding-left: 15px;
 }
 
-/* 訂單表格樣式 */
-.order-table-container {
+/* === 3. 主從式佈局容器 === */
+.split-view-container {
+    display: flex;
+    gap: 20px;
+    flex: 1;       /* 佔滿剩餘高度 */
+    min-height: 0; /* ★★★ 超級關鍵：讓 Flex 子元素可以正確啟動捲動條 ★★★ */
+}
+
+/* === 4. 左側：訂單列表 === */
+.left-panel {
+    flex: 4; /* 佔 40% 寬度 */
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    
+    display: flex;
+    flex-direction: column; /* 讓標題和列表垂直排列 */
+    overflow: hidden;       /* 限制高度不外溢 */
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 15px 20px;
-    text-align: left;
+/* 左側標題 (固定不動) */
+.left-panel-header {
+    padding: 15px;
+    background: #fafafa;
     border-bottom: 1px solid #eee;
+    font-weight: bold;
+    color: #666;
+    flex-shrink: 0; /* 固定高度 */
 }
 
-th {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: 500;
+/* 左側捲動區 (只有這裡會動) */
+.order-list-scroll {
+    flex: 1;            /* 佔滿剩餘空間 */
+    overflow-y: auto;   /* ★ 關鍵：內容太多時，只有這裡出現捲軸 */
 }
 
-tr:hover {
-    background-color: #f9f9f9;
+/* 列表項目樣式 */
+.order-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
-/* 返回按鈕 (Mobile friendly) */
+.order-row:hover {
+    background-color: #f5f5f5;
+}
+
+.order-row.selected {
+    background-color: #e8f5e9;
+    border-left: 4px solid var(--primary-color);
+}
+
+.order-row-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.order-id { font-weight: bold; color: #333; }
+.order-time { font-size: 0.85rem; color: #888; }
+.order-total { font-weight: bold; color: var(--primary-color); font-size: 1.1rem; }
+
+
+/* === 5. 右側：詳細內容 === */
+.right-panel {
+    flex: 6; /* 佔 60% 寬度 */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 30px;
+    
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* ★ 關鍵：如果明細太長，只有右邊自己捲動 */
+}
+
+/* 明細樣式保持不變 */
+.detail-header {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.detail-header h3 { margin: 0; color: var(--primary-color); }
+.detail-meta { color: #666; font-size: 0.9rem; margin-top: 5px; }
+
+.detail-table { width: 100%; border-collapse: collapse; }
+.detail-table th { text-align: left; color: #888; font-weight: normal; border-bottom: 1px solid #eee; padding: 10px 0; }
+.detail-table td { padding: 12px 0; border-bottom: 1px dashed #eee; }
+.detail-total { font-size: 1.5rem; font-weight: bold; text-align: right; color: var(--primary-color); margin-top: 20px; }
+
+.empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #999;
+    font-size: 1.2rem;
+}
+
 .btn-back {
     padding: 8px 16px;
     background-color: #607d8b;

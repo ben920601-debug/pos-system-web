@@ -16,7 +16,7 @@ export function renderProductList(products, onProductClick) {
         const card = document.createElement('div');
         card.className = 'product-card';
         
-        // 設定卡片內容 (名稱、價格、庫存)
+        // 設定卡片內容 (名稱、價格)
         card.innerHTML = `
             <div class="card-content">
                 <h3 style="font-size: 1.1rem; color: var(--primary-color); margin-bottom: 5px;">${product.name}</h3>
@@ -25,7 +25,6 @@ export function renderProductList(products, onProductClick) {
             <div class="card-footer" style="margin-top: auto;">
                 <div style="font-size: 1.2rem; font-weight: bold;">$${product.price}</div>
                 <div style="font-size: 0.8rem; color: ${product.stock > 0 ? 'green' : 'red'};">
-                    庫存: ${product.stock}
                 </div>
             </div>
         `;
